@@ -5,8 +5,8 @@ const glob = require('glob');
 
 // Funzione per cercare blocchi describe/it nei file
 function extractTests(fileContent) {
-  const describeRegex = /describe\\(['"`](.*?)['"`]/g;
-  const itRegex = /it\\(['"`](.*?)['"`]/g;
+  const describeRegex = /describe\(['"`](.*?)['"`]/g;
+  const itRegex = /it\(['"`](.*?)['"`]/g;
 
   const tests = [];
   let match;
