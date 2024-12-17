@@ -1,0 +1,25 @@
+name: Extract Unit Tests
+
+on:
+  pull_request:
+    paths:
+      - '**/*.test.{js,ts}'
+
+jobs:
+  extract-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Installa le dipendenze
+        run: npm install glob
+
+      - name: Esegui script per estrarre i test
+        run: node scripts/extract-tests.js
