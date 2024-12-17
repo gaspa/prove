@@ -22,4 +22,18 @@ jobs:
         run: npm install glob
 
       - name: Esegui script per estrarre i test
-        run: node scripts/extract-tests.js
+        id: extract_tests
+        run: |
+          node scripts/extract-tests.js > test-results.txt
+
+      - name: Commenta la Pull Request
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ### 🚀 Unit Test Modificati
+            Ecco i test modificati rilevati automaticamente:
+
+            ```
+            ${{ steps.extract_tests.outputs.result }}
+            ```
