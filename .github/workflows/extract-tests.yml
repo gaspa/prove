@@ -2,6 +2,7 @@ name: Extract Unit Tests
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
     paths:
       - '**/*.test.{js,ts}'
 
@@ -25,6 +26,9 @@ jobs:
         id: extract_tests
         run: |
           node scripts/extract-tests.js > test-results.txt
+          echo "result<<EOF" >> $GITHUB_ENV
+          cat test-results.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Commenta la Pull Request
         uses: peter-evans/create-or-update-comment@v3
@@ -37,3 +41,4 @@ jobs:
             ```
             ${{ steps.extract_tests.outputs.result }}
             ```
+            ${{ env.result }}
