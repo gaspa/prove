@@ -3,3 +3,4 @@ describe('with some foo', () => {
 });
 
 // a comment
+// another comment
