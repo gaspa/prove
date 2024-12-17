@@ -3,8 +3,8 @@ name: Extract Unit Tests
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      - '**/*.test.{js,ts}'
+#    paths:
+#      - '**/*.test.{js,ts}'
 
 jobs:
   extract-tests:
